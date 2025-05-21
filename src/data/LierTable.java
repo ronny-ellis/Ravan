@@ -117,7 +117,7 @@ public abstract class LierTable
             throw e;
         }       
     }
-    public List<Object> recherches(String where,Object obj) throws Exception
+    public List<Object> recherches(String where) throws Exception
     {
         try 
         {
@@ -139,6 +139,7 @@ public abstract class LierTable
             List<Object> data=new ArrayList<Object>();
             while (result.next()) 
             {
+                Object instance=this.getClass().getDeclaredConstructor().newInstance();
                 for (Field field : fields) 
                 {
                     for (Method method : methods) 
@@ -147,8 +148,7 @@ public abstract class LierTable
                         {
                             try 
                             {    
-                                method.invoke(obj,result.getString(field.getName()));
-                                System.out.println(result.getString(field.getName())); 
+                                method.invoke(instance,result.getString(field.getName()));
                             } catch (Exception e) {
                                 e.printStackTrace();
                                 throw e;
@@ -156,7 +156,7 @@ public abstract class LierTable
                         }
                     }
                 }
-                data.add(obj);
+                data.add(instance);
             }
             c.close();
             return data;

@@ -11,20 +11,21 @@ public class Main
 {
     public static void main(String[] args) {
         Personne personne=new Personne();
-        Personne personne2=new Personne("Ranaivo","12");
+        //Personne personne2=new Personne("Ranaivo","12");
         List<Object> data;
         try 
         {
             DAO dao=new DAO();
-            data=personne.recherches("",new Personne());
+            data=personne.recherches("");
             Object[] objects=data.toArray();
             //Personne[] personnes=(Personne[]) data.toArray();
-            for (Object object : objects) {
+            for (Object object : objects) 
+            {
                 personne=(Personne) object;
-                System.out.println(personne.getNom());
+                System.out.println(personne.getId());
             }
             //dao.save(personne2);
-            personne2.updateTable(" where id='12'");       
+            //personne2.updateTable(" where id='12'");       
         } 
         catch (Exception e) 
         {

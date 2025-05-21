@@ -26,7 +26,7 @@ public class DAO implements InterfaceDAO
 
         try 
         {
-            return lierTable.recherches("", obj).toArray();
+            return lierTable.recherches("").toArray();
         } 
         catch (Exception e) 
         {
